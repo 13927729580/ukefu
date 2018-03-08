@@ -65,8 +65,7 @@
 								type:"writing",
 								session:"${sessionid!''}",
 								orgi:"${orgi!''}",
-								message : strValue
-						});
+								message : encodeURIComponent(message)
 					}
 					words = this.count("text") ;
 					document.getElementById('surplus').innerHTML = count+"/"+limitNum+" , " + pattern; //输入显示
