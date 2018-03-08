@@ -65,7 +65,8 @@
 								type:"writing",
 								session:"${sessionid!''}",
 								orgi:"${orgi!''}",
-								message : encodeURIComponent(message)
+								message : strValue
+						});
 					}
 					words = this.count("text") ;
 					document.getElementById('surplus').innerHTML = count+"/"+limitNum+" , " + pattern; //输入显示
@@ -461,7 +462,7 @@
 						type:"message" ,
 						session:"${sessionid!''}",
 						orgi:"${orgi!''}",
-						message : message
+						message : encodeURIComponent(message)
 				});
 			}
 		}else if(service_end == true){
