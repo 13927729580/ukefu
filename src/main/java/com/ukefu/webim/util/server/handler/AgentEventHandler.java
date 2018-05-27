@@ -70,7 +70,7 @@ public class AgentEventHandler
 		String admin = client.getHandshakeData().getSingleUrlParam("admin") ;
 		if(!StringUtils.isBlank(user)){
 			ServiceQuene.deleteAgentStatus(user, orgi, !StringUtils.isBlank(admin) && admin.equals("true"));
-			NettyClients.getInstance().removeAgentEventClient(user , client.getSessionId().toString());
+			NettyClients.getInstance().removeAgentEventClient(user , UKTools.getContextID(client.getSessionId().toString()));
 		}
     }  
       
