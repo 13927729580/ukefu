@@ -82,7 +82,7 @@ public class EntIMEventHandler
 				client.leaveRoom(group);
 			}else{
 				if(!StringUtils.isBlank(user)){
-					NettyClients.getInstance().removeEntIMEventClient(user, client.getSessionId().toString());
+					NettyClients.getInstance().removeEntIMEventClient(user,UKTools.getContextID(client.getSessionId().toString()));
 				}
 				if(NettyClients.getInstance().getEntIMClientsNum(user) == 0){
 					MessageOutContent outMessage = new MessageOutContent() ;
