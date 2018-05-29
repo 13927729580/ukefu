@@ -560,6 +560,8 @@ public class ServiceQuene {
 			agentService.setId(agentUser.getAgentserviceid());
 		}
 		agentService.setOrgi(orgi);
+
+		UKTools.copyProperties(agentUser, agentService); //复制属性
 		
 		agentService.setChannel(agentUser.getChannel());
 		
@@ -615,7 +617,7 @@ public class ServiceQuene {
 			}
 		}
 		if(finished || agentStatus!=null) {
-			UKTools.copyProperties(agentUser, agentService); //复制属性
+			
 			//			agentService.setId(null);
 	
 			agentService.setAgentuserid(agentUser.getId());
