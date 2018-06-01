@@ -453,8 +453,8 @@ public class ServiceQuene {
 		}
 		try {
 			agentService = processAgentService(agentStatus, agentUser, orgi) ;
-			if(queneIndex >= 0 && agentService.getStatus().equals(UKDataContext.AgentUserStatusEnum.INQUENE.toString())){
-				agentService.setQueneindex(queneIndex);
+			if(agentService.getStatus().equals(UKDataContext.AgentUserStatusEnum.INQUENE.toString())){
+				agentService.setQueneindex(getQueneIndex(agentUser.getAgent(), orgi, agentUser.getSkill()));
 			}
 			
 		}catch(Exception ex){
