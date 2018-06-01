@@ -9,6 +9,8 @@ public class NewRequestMessage extends Message{
 	private static final long serialVersionUID = 3520656734252136303L;
 	private String id = UKTools.getUUID();
 	private String type ;
+	private String status;
+	private boolean noagent ;
 
 	public String getType() {
 		return type;
@@ -24,5 +26,21 @@ public class NewRequestMessage extends Message{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public boolean isNoagent() {
+		return noagent;
+	}
+
+	public void setNoagent(boolean noagent) {
+		this.noagent = noagent;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

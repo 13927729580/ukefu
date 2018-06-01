@@ -26,6 +26,9 @@ public class MessageInContent implements MessageDataBean{
 	private String contextid ;
 	private String createtime ;
 	
+	private boolean noagent ;
+	private String status ;
+	
 	public String getId() {
 		return id;
 	}
@@ -133,6 +136,18 @@ public class MessageInContent implements MessageDataBean{
 	}
 	public void setAttachmentid(String attachmentid) {
 		this.attachmentid = attachmentid;
+	}
+	public boolean isNoagent() {
+		return noagent;
+	}
+	public void setNoagent(boolean noagent) {
+		this.noagent = noagent;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
