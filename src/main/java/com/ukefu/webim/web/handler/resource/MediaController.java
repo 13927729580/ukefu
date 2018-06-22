@@ -1,16 +1,21 @@
 package com.ukefu.webim.web.handler.resource;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.net.URL;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -143,17 +148,19 @@ public class MediaController extends Handler{
     @Menu(type = "resouce" , subtype = "template" , access = false)
     public void template(HttpServletResponse response,HttpServletRequest request, @Valid String filename) throws IOException {
     	if(!StringUtils.isBlank(filename)){
-    		InputStream is = MediaController.class.getClassLoader().getResourceAsStream(TEMPLATE_DATA_PATH+filename);
-    		if(is!=null) {
-    			response.setContentType("text/plain");  
-    	        response.setHeader("Content-Disposition", "attachment;filename="+java.net.URLEncoder.encode(filename, "UTF-8"));  
-    	        int length ;
-    	        byte[] data = new byte[1024] ;
-    	        while((length = is.read(data)) > 0) {
-    	        	response.getOutputStream().write(data , 0 , length);
-    	        }
-    	        is.close();
+    		File tempFile = new File(path+"/templates" , UKTools.genIDByKey(filename)+".xls") ;
+    		if(!tempFile.getParentFile().exists()) {
+    			tempFile.getParentFile().mkdirs() ;
     		}
+    		if(!tempFile.exists()) {
+	            OutputStream outstream = new FileOutputStream(tempFile);
+	    		IOUtils.copy(MediaController.class.getClassLoader().getResourceAsStream(TEMPLATE_DATA_PATH+filename), outstream); 
+	    		outstream.close();
+    		}
+    		response.setContentType("text/plain");  
+	        response.setHeader("Content-Disposition", "attachment;filename="+java.net.URLEncoder.encode(filename, "UTF-8")); 
+            ServletOutputStream out = response.getOutputStream();
+            out.write(FileUtils.readFileToByteArray(tempFile));
     	}
     	return ;
     }

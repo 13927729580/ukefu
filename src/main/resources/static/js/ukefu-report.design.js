@@ -775,7 +775,7 @@ var DefaultHelper = {
 	refresh : function(dsid , templet , mid ,  data){
 		//保存完毕，需要刷新当前模块
 		$.post(report.refresh+"&dsid="+dsid+"&templet="+templet+"&mid="+mid,{struct: decodeURIComponent(data)},function(data){
-			$('#'+mid).empty().html(data);	
+//			$('#'+mid).empty().html(data);	
 		});		
 	}
 }
