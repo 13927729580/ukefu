@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class BaseService<T> {
 		List<Object> dataList = null ;
 		Session session = hibernateFactory.openSession() ; 
 		try{
-			dataList = session.createQuery("from "+bean).list() ;
+			idataList = session.createCriteria(Class.forName(bean)).list();
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}finally{
