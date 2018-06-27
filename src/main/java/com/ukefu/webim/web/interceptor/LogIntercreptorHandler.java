@@ -40,14 +40,16 @@ public class LogIntercreptorHandler implements org.springframework.web.servlet.H
 	    if(!StringUtils.isBlank(request.getRequestURI()) && !(request.getRequestURI().startsWith("/message/ping") || request.getRequestURI().startsWith("/res/css") || request.getRequestURI().startsWith("/error")  || request.getRequestURI().startsWith("/im/"))){
 	    	RequestLog log = new RequestLog();
 		    log.setEndtime(new Date()) ;
-		    
-			log.setClassname(hander.getClass().toString()) ;
+		    if(hander != null){
+				log.setClassname(hander.getClass().toString()) ;
+				if(hander instanceof Handler && ((Handler)hander).getStarttime() != 0) {
+					log.setQuerytime(System.currentTimeMillis() - ((Handler)hander).getStarttime());
+				}
+			}
 			log.setName(obj.name());
 			log.setMethodname(handlerMethod.toString()) ;
 			log.setIp(request.getRemoteAddr()) ;
-			if(hander instanceof Handler && ((Handler)hander).getStarttime() != 0) {
-		    	log.setQuerytime(System.currentTimeMillis() - ((Handler)hander).getStarttime());
-		    }
+			
 			log.setUrl(request.getRequestURI());
 			
 			log.setHostname(request.getRemoteHost()) ;
