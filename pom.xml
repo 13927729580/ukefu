@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.ukefu</groupId>
-  <artifactId>webim</artifactId>
+  <artifactId>webim-test</artifactId>
   <version>3.8.0</version>
   <packaging>war</packaging>
 
-  <name>webim</name>
+  <name>webim-test</name>
   <description>优客服产品（UCKeFu-WebIM在线客服子系统）</description>
 
   <parent>
