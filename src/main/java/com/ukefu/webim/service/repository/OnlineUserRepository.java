@@ -97,4 +97,7 @@ public abstract interface OnlineUserRepository extends JpaRepository<OnlineUser,
 	
 	@Query("SELECT e from EkmExperts e WHERE orgi = ?1 AND (bustype = ?2 or bustype = ?3 )")
 	Page<Object> findByExperts(String orgi, String exp, String au, Pageable paramPageable);
+	
+	@Query("select e from EkmKwSearch e where orgi = ?1 and type = ?2 order by times desc")
+	List<Object> findByOrgiAndTimes(String orgi, String type);
 }
