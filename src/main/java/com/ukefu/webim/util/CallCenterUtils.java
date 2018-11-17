@@ -570,10 +570,11 @@ public class CallCenterUtils {
 	public static void getCalloutCount(String orgi, String type,String dataid){
 		CalloutSaleCountRepository calloutCountRes = UKDataContext.getContext().getBean(CalloutSaleCountRepository.class) ;
 		CallOutNamesRepository callNameRes = UKDataContext.getContext().getBean(CallOutNamesRepository.class) ;
-		List<CalloutSaleCount> countList = calloutCountRes.findByOrgi(orgi);
+		/*List<CalloutSaleCount> countList = calloutCountRes.findByOrgi(orgi);
 		if(countList.size() > 0){
 			calloutCountRes.delete(countList);
-		}
+		}*/
+		calloutCountRes.deleteByOrgi(orgi);
 		BoolQueryBuilder queryBuilder = new BoolQueryBuilder();
 		queryBuilder.must(termQuery("orgi",orgi));
 		List<CalloutSaleCount> saleCountList = new ArrayList<>();
